@@ -2,21 +2,17 @@ pipeline {
     agent {
         docker {
             image 'node:lts-buster-slim'
-            args '-p 3000:3000'
+            args '-u root -p 3000:3000'
         }
     }
     environment {
         CI = 'true'
     }
     stages {
-        stage('Prepare') {
-            steps {
-                sh 'mkdir -p ~/.npm'
-                sh 'sudo chown -R 113:118 ~/.npm'
-            }
-        }
         stage('Build') {
             steps {
+                sh 'mkdir -p ~/.npm'
+                sh 'chown -R 113:118 ~/.npm'
                 sh 'npm install'
             }
         }

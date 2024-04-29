@@ -3,9 +3,7 @@ pipeline {
         docker {
             image 'node:lts-buster-slim'
             args '-p 3000:3000'
-            containerOptions: [
-                hostPath(path: '/path/to/npm/cache', sandbox: '/home/node/.npm')
-            ]
+            reuseNode true
         }
     }
     environment {

@@ -3,10 +3,9 @@ pipeline {
         docker {
             image 'node:lts-buster-slim'
             args '-p 3000:3000'
-            user 'node'
-            volumes {
-                hostPath('/path/to/npm/cache', '/home/node/.npm')
-            }
+            containerOptions: [
+                hostPath(path: '/path/to/npm/cache', sandbox: '/home/node/.npm')
+            ]
         }
     }
     environment {

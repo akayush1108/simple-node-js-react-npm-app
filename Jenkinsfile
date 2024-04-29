@@ -1,20 +1,29 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+            image 'node:lts-buster-slim'
+            args '-p 3000:3000'
+        }
+    }
+    environment {
+        CI = 'true'
+    }
     stages {
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
-                script {
-                    docker.build('hello-world-react-app')
-                }
+                sh 'npm install'
             }
         }
-
-        stage('Run Docker Container') {
+        stage('Test') {
             steps {
-                script {
-                    docker.image('hello-world-react-app').run('-p 3000:3000')
-                }
+                sh './jenkins/scripts/test.sh'
+            }
+        }
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
             }
         }
     }

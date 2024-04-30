@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Creating a Docker container') { 
             steps {
-                sh 'docker run -p 8081:8080
+                sh 'docker run -p 8081:8080 react-app-image
             }
         }
     }

@@ -1,31 +1,16 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:16-alpine'
-            args '-p 3000:3000'
-        }
-    }
-    environment { 
-        CI = 'true'
-    }
+    agent any
+
     stages {
-        stage('Build') {
+        stage('Creating a Docker image') {
             steps {
 		echo "Building.."
-                sh 'npm install'
+                sh 'docker build -t react-app-image .'
             }
         }
-        stage('Test') {
+        stage('Creating a Docker container') { 
             steps {
-                sh 'npm test'
-            }
-        }
-        stage('Deliver') { 
-            steps {
-                sh 'npm run build'
-                sh 'npm start &'
-                sleep 1
-                echo "\$! > .pidfile"
+                sh 'docker run -p 8081:8080
             }
         }
     }

@@ -5,19 +5,12 @@ pipeline {
         stage('Start Jenkins Container') {
             steps {
                 script {
-                    // Pull the Jenkins Docker image
                     docker.image('jenkins/jenkins').pull()
-
-                    // Run the Jenkins container
                     docker.image('jenkins/jenkins').run('-d -p 8888:8080 -p 50000:50000 --name jenkins2')
-
-                    // Wait for Jenkins to start (optional)
-                    sh 'sleep 30' // Adjust the sleep time as needed
+                    sh 'sleep 30' 
                 }
             }
         }
-
-        // Existing stages from your Jenkinsfile
         stage('Build') {
             steps {
                 sh 'mkdir -p ~/.npm'
@@ -40,8 +33,7 @@ pipeline {
 
         // stage('Stop Jenkins Container') {
         //     steps {
-        //         script {
-        //             // Stop and remove the Jenkins container after the build is complete
+        //         script {          
         //             docker.image('jenkins/jenkins').stop()
         //             docker.image('jenkins/jenkins').remove(force: true)
         //         }

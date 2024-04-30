@@ -25,7 +25,7 @@ pipeline {
                 sh 'npm run build'
                 sh 'npm start &'
                 sleep 1
-                echo $! > .pidfile
+                echo "\$! > .pidfile"
             }
         }
     }

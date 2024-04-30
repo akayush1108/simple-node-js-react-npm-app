@@ -33,19 +33,19 @@ pipeline {
         stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                // input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                // sh './jenkins/scripts/kill.sh'
             }
         }
 
-        stage('Stop Jenkins Container') {
-            steps {
-                script {
-                    // Stop and remove the Jenkins container after the build is complete
-                    docker.image('jenkins/jenkins').stop()
-                    docker.image('jenkins/jenkins').remove(force: true)
-                }
-            }
-        }
+        // stage('Stop Jenkins Container') {
+        //     steps {
+        //         script {
+        //             // Stop and remove the Jenkins container after the build is complete
+        //             docker.image('jenkins/jenkins').stop()
+        //             docker.image('jenkins/jenkins').remove(force: true)
+        //         }
+        //     }
+        // }
     }
 }

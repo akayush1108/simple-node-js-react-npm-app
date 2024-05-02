@@ -14,12 +14,12 @@ pipeline {
         stage('Creating a Docker image') {
             steps {
 		echo "Building.."
-                sh 'sudo docker build -t react-app-image .'
+                sh 'docker build -t react-app-image .'
             }
         }
         stage('Creating a Docker container') { 
             steps {
-                sh 'sudo docker run -dp 3001:3000 react-app-image'
+                sh 'docker run -dp 3001:3000 react-app-image'
             }
         }
     }

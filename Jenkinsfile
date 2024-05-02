@@ -6,12 +6,11 @@ pipeline {
         }
     }
     stages {
-	stage('Preparation') {
-	    steps {
+	stage('Clean Workspace') {
+            steps {
                 cleanWs()
-                checkout scm
-	    }
-	}
+            }
+        }
         stage('Creating a Docker image') {
             steps {
 		echo "Building.."

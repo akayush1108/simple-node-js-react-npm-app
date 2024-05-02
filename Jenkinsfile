@@ -2,7 +2,7 @@
 pipeline {
     agent {
         node {
-            label 'linux docker frontend'
+            label 'linux-docker-frontend'
         }
     }
     stages {

@@ -6,11 +6,11 @@ pipeline {
         }
     }
     stages {
-	stage('Clean Workspace') {
-            steps {
-                cleanWs()
-            }
-        }
+	// stage('Clean Workspace') {
+ //            steps {
+ //                cleanWs()
+ //            }
+ //        }
         stage('Creating a Docker image') {
             steps {
 		echo "Building.."

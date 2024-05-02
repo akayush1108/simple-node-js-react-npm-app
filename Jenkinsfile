@@ -14,7 +14,7 @@ pipeline {
         stage('Creating a Docker image') {
             steps {
 		echo "Building.."
-                sh 'docker build -t react-app-image .'
+                sh 'docker build -t react-app-image $WORKSPACE/.'
             }
         }
         stage('Creating a Docker container') { 

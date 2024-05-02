@@ -1,8 +1,8 @@
 // Declarative pipeline
 pipeline {
     agent {
-        node('linux docker frontend') {
-            
+        node {
+            label 'linux docker frontend'
         }
     }
     stages {

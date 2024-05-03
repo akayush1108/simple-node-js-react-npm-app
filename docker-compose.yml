@@ -2,7 +2,7 @@ version: '3.8'
 services:
   react-app:
     container_name: react_container
-    image: react-app-image
+    image: react-app2-image
     build:
       context: .
       dockerfile: Dockerfile
